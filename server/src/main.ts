@@ -2,10 +2,14 @@ import {NestFactory} from "@nestjs/core";
 import {AppModule} from "./app.module";
 
 
-const start = async ()=>{
+const start = async () => {
     try {
-        const app= await NestFactory.create(AppModule)
-    }catch (e) {
+        const PORT = process.env.PORT || 5000
+        const app = await NestFactory.create(AppModule)
+        await app.listen(PORT, () => console.log(`server start on ${PORT} port`))
+    } catch (e) {
         console.log(e)
     }
 }
+
+start()
